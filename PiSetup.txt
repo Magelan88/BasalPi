@@ -1,0 +1,29 @@
+https://elinux.org/RPi-Cam-Web-Interface
+
+
+# install raspberian image
+ls -la /dev/sd*
+unzip -p *raspbian-stretch-lite.zip | sudo dd bs=4M of=/dev/sdc status=progress conv=fsync
+
+#on the small fat16 partition (boot) (eject and put in again)
+touch ssh
+cp  /home/david/Documents/RaspberryPiwpa_supplicant.conf .
+
+#put in Raspbery pi and start
+raspi-config
+--> resize volume
+--> rename device and password
+--> enable camera
+
+sudo shutdown -r now
+
+
+#log in again pi@BasalPi --> password WanzeGalsThermometer5
+sudo apt-get install git
+git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
+cd RPi_Cam_Web_Interface
+./install.sh
+
+
+
+
